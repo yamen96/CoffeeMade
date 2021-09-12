@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components"
+import React from 'react';
+import TitleBar from './components/TitleBar';
+import MainEditor from './components/MainEditor';
+import { themes } from './constants/themes';
+export const ThemeContext = React.createContext({});
+
+const MainApp = styled.div`
+  background-color: ${props => props.theme.backgroundColor};
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
 
 function App() {
+  const defaultStartupTheme = themes.default.dark;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={defaultStartupTheme}>
+      <MainApp theme={defaultStartupTheme}>
+        <TitleBar />
+        <MainEditor />  
+      </MainApp>
+    </ThemeContext.Provider>
   );
 }
 
