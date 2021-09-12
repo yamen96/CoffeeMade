@@ -1,7 +1,8 @@
 const path = require('path');
 
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
+const { ipcEventHandlers, ipcEventTriggers } = require('./eventHandlers');
 
 let win;
 
@@ -29,13 +30,8 @@ function createWindow() {
   if (isDev) {
     win.webContents.openDevTools({ mode: 'detach' });
   }
-
-  win.on('maximize', (evt, arg) => {
-    win.webContents.send('maximize-message', {"maximized": true});
-  })
-  win.on('unmaximize', (evt, arg) => {
-    win.webContents.send('maximize-message', {"maximized": false});
-  })
+  ipcEventHandlers(win);
+  ipcEventTriggers(win);
 }
 
 // This method will be called when Electron has finished
@@ -56,18 +52,4 @@ app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
-});
-
-ipcMain.on("minimize", (evt, arg) => {
-  win.minimize();
-});
-ipcMain.on("un-maximize", (evt, arg) => {
-  console.log(win);
-  win.unmaximize();
-});
-ipcMain.on("maximize", (evt, arg) => {
-  win.maximize();
-});
-ipcMain.on("exit", (evt, arg) => {
-  app.quit();
 });
