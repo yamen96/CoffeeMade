@@ -13,7 +13,6 @@ export const TitleBarStyled = styled.div`
   display: flex;
   justify-content: flex-end;
   -webkit-user-select: none;
-  // -webkit-app-region: drag;
 `
 export const DraggableArea = styled.div`
   width: 100%;
