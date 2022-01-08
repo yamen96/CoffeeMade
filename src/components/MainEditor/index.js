@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MainEditorStyled } from './styles';
-import { ThemeContext } from '../../App.js';
 import moment from 'moment';
 
 const MainEditor = () => {
 	const [mainText, setMainText] = useState("");
 	const [lastEdited, setLastEdited] = useState( new moment().format('MMMM Do, YYYY, h:mm A'));
-	const theme = useContext(ThemeContext) 
   const textRef = useRef();
 
   useEffect(() => {
@@ -20,7 +18,6 @@ const MainEditor = () => {
 	return <MainEditorStyled 
 				contentEditable
 				suppressContentEditableWarning
-				theme={theme}
 				ref={textRef} 
 				spellCheck={false} 
 				onInput={onChangeHandler} 

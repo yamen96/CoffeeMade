@@ -5,7 +5,6 @@ import minimizeImg from './minimize.svg';
 import maximizeImg from './maximize.svg';
 import unMaximizeImg from './unmaximize.svg';
 
-
 export const TitleBarStyled = styled.div`
   background-color: ${props => props.theme.titleBarColor};
   width: 100vw;

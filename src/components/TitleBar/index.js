@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { TitleBarStyled, CloseButton, MinimizeButton, MaximizeButton, DraggableArea } from './styles';
-import { ThemeContext } from '../../App.js';
+import ThemeToggle from '../ThemeToggle/ThemeToggle';
 const ipcRenderer = window.require("electron").ipcRenderer;
 
-const TitleBar = () => {
+const TitleBar = ({toggleTheme}) => {
   const [maximized, setMaximized ] = useState(true);
-  const theme = useContext(ThemeContext);
 
   const minimizeClickHandler = (e) => {
     ipcRenderer.send('minimize');
@@ -24,11 +23,12 @@ const TitleBar = () => {
     message && setMaximized(!message.maximized)
   });
 
-  return <TitleBarStyled theme={theme}>
-    <DraggableArea />
-    <MinimizeButton onClick={minimizeClickHandler} theme={theme}/>
-    <MaximizeButton maximized={maximized} onClick={maximizeClickHandler} theme={theme}/>
-    <CloseButton onClick={closeClickHandler} theme={theme}/>
+  return <TitleBarStyled>
+      <DraggableArea />
+      <ThemeToggle onClick={toggleTheme}/>
+      <MinimizeButton onClick={minimizeClickHandler}/>
+      <MaximizeButton maximized={maximized} onClick={maximizeClickHandler}/>
+      <CloseButton onClick={closeClickHandler}/>
   </TitleBarStyled>
 }
 

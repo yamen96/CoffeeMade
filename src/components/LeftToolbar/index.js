@@ -8,9 +8,9 @@ import ReactTooltip from 'react-tooltip';
 const LeftToolbar = () => {
   const theme = useContext(ThemeContext);
   const [selectedIcon, setSelectedIcon] = useState(toolBarIcons[0]);
-  return <LeftToolbarStyled theme={theme}>
+  return <LeftToolbarStyled>
       {toolBarIcons.map((icon, index) => (
-        <>
+        <div key={icon.name}>
         <a data-tip data-for={`icon-tooltip-${index}`}>
         <ToolbarIcon 
           onClick={(e)=>{
@@ -21,10 +21,10 @@ const LeftToolbar = () => {
           srcUnselected={icon.icon.unselected}
           />
         </a>
-        <ReactTooltip id={`icon-tooltip-${index}`} type="dark" effect='solid' place="right">
+        <ReactTooltip id={`icon-tooltip-${index}`} type={theme.name.includes("dark") ? "light" : "dark"} effect='solid' place="right">
           <span>{icon.name}</span>
         </ReactTooltip>
-        </>
+        </div>
       )
       )}
   </LeftToolbarStyled>

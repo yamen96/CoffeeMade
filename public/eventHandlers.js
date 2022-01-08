@@ -1,4 +1,4 @@
-const { ipcMain, app } = require('electron');
+const { ipcMain, app, dialog } = require('electron');
 
 const ipcEventHandlers = (currentWindow) => {
   ipcMain.on("minimize", (evt, arg) => {
@@ -12,6 +12,12 @@ const ipcEventHandlers = (currentWindow) => {
   });
   ipcMain.on("exit", (evt, arg) => {
     app.quit();
+  });
+  ipcMain.on("open-file-dialog", async (evt, arg) => {
+    const filePaths = await dialog.showOpenDialog({
+      properties: ['openDirectory']
+    })
+    currentWindow.webContents.send('selected-folder', filePaths);
   });
 }
 

@@ -21,7 +21,7 @@ export const toolBarIcons =
     unselected: tagsGrey
   } 
 },
-  {name: "Todo List",
+  {name: "Todos",
   icon: {
     selected: todoWhite,
     unselected: todoGrey

@@ -6,7 +6,6 @@ export const LeftToolbarStyled = styled.div`
   height: calc(100vh - 40px);
   z-index: 10;
   margin: 0 auto;
-  position: fixed;
   width: 70px;
   top: 40px;
 `
