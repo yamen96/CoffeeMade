@@ -15,22 +15,22 @@ export const toolBarIcons =
       unselected: folderGrey
    } 
 },
-  {name: "Tags",
-   icon: {
-    selected: tagsWhite,
-    unselected: tagsGrey
-  } 
-},
-  {name: "Todos",
-  icon: {
-    selected: todoWhite,
-    unselected: todoGrey
-  } 
-},
-  {name: "Calendar",
-  icon: {
-    selected: calendarWhite,
-    unselected: calendarGrey
-  } 
-  },
+//   {name: "Tags",
+//    icon: {
+//     selected: tagsWhite,
+//     unselected: tagsGrey
+//   } 
+// },
+//   {name: "Todos",
+//   icon: {
+//     selected: todoWhite,
+//     unselected: todoGrey
+//   } 
+// },
+//   {name: "Calendar",
+//   icon: {
+//     selected: calendarWhite,
+//     unselected: calendarGrey
+//   } 
+//   },
 ]

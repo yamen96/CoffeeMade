@@ -1,4 +1,4 @@
-import { loadNewLocation, loadFolderContents} from '../state/fileDirectorySlice';
+import { loadNewLocation, loadFolderContents, closeFolder} from '../state/fileDirectorySlice';
 import { viewableExtensions } from '../constants/viewableExtensions';
 const fs = window.require('fs');
 
@@ -11,6 +11,7 @@ const mapDirectory = (files) => {
       name: file.name, 
       isFolder: file.isDirectory(), 
       isFile: file.isFile(),
+      isOpen: false,
       extension
     }
   });
@@ -28,4 +29,8 @@ export const openFolderInDirectory = (location, dispatch) => {
   fs.readdir(location, {withFileTypes: true}, (err,files) => {
     dispatch(loadFolderContents({ location, files: mapDirectory(files) }))
   })
+}
+
+export const closeFolderInDirectory = (location, dispatch) => {
+  dispatch(closeFolder({location}))
 }

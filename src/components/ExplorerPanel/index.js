@@ -3,8 +3,7 @@ import { ExplorerPanelStyled, FileSection } from './styles.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { PrimaryButton } from '../PrimaryButton/PrimaryButton.js';
 import { openNewDirectory, openFolderInDirectory } from '../../helpers/directoryHelper.js';
-import arrow from './arrow.svg';
-import closedFolder from './closedFolder.svg';
+import FileTree from './FileTree.js';
 
 const ipcRenderer = window.require("electron").ipcRenderer;
 
@@ -21,13 +20,6 @@ const ExplorerPanel = () => {
     ipcRenderer.send('open-file-dialog');
   }
 
-  const handleClick = (file) => {
-    if(file.isFolder) {
-      const folderLocation = `${location}\\${file.name}`
-      openFolderInDirectory(folderLocation, dispatch)
-    }
-  }
-
   ipcRenderer.on('selected-folder', function (evt, msgData) {
     const { filePaths } = msgData;
     if ( filePaths?.length === 0 )  return;
@@ -38,12 +30,7 @@ const ExplorerPanel = () => {
 
   return <ExplorerPanelStyled>
       <PrimaryButton onClick={openNewFolder}>Open New Folder</PrimaryButton>
-      {files ? files.map(file => (
-        <FileSection key={file.name} onClick={(e) => handleClick(file)}>
-          {file.isFolder && <div style={{paddingRight: "10px"}}><img src={closedFolder}/></div>}
-          {file.name}
-        </FileSection>
-      )) : <div style={{padding: "20px"}}>No Directory Selected</div>}
+      <FileTree files={files} path={location}/>
     </ExplorerPanelStyled>
 }
 

@@ -10,7 +10,7 @@ export const themes = {
       leftToolbarColor: "#3B4049",
       explorerPanelFontColor: "#adadad",
       primaryButtonColor: "#787F8D",
-      primaryButtonColorOnHover: "#787F8D",
+      primaryButtonColorOnHover: "#969EAE",
       primaryButtonTextColor: "#242830",
     },
     light: {
@@ -23,7 +23,7 @@ export const themes = {
       leftToolbarColor: "#3B4049",
       explorerPanelFontColor: "#303640",
       primaryButtonColor: "#787F8D",
-      primaryButtonColorOnHover: "#787F8D",
+      primaryButtonColorOnHover: "#969EAE",
       primaryButtonTextColor: "#ffffff",
     }
   }
