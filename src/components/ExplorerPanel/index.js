@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { ExplorerPanelStyled, FileSection } from './styles.js';
+import React, { useState, useEffect } from 'react';
+import { ExplorerPanelStyled } from './styles.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { PrimaryButton } from '../PrimaryButton/PrimaryButton.js';
-import { openNewDirectory, openFolderInDirectory } from '../../helpers/directoryHelper.js';
+import { openNewDirectory } from '../../helpers/directoryHelper.js';
 import FileTree from './FileTree.js';
+import ResizeArea from './ResizeArea.js';
 
 const ipcRenderer = window.require("electron").ipcRenderer;
 
@@ -11,14 +11,12 @@ const ExplorerPanel = () => {
   const dispatch = useDispatch();
   let location = useSelector((state) => state.fileDirectory.location);
   const files = useSelector((state) => state.fileDirectory.files);
+  const [panelWidth, setPanelWidth] = useState(200);
 
   useEffect(async () => {
-    openNewDirectory(location, dispatch);
+    if (location)
+      openNewDirectory(location, dispatch);
   }, [])
-
-  const openNewFolder = async () => {
-    ipcRenderer.send('open-file-dialog');
-  }
 
   ipcRenderer.on('selected-folder', function (evt, msgData) {
     const { filePaths } = msgData;
@@ -28,10 +26,12 @@ const ExplorerPanel = () => {
     window.localStorage.setItem('lastOpenedLocation', location);
   })
 
-  return <ExplorerPanelStyled>
-      <PrimaryButton onClick={openNewFolder}>Open New Folder</PrimaryButton>
-      <FileTree files={files} path={location}/>
-    </ExplorerPanelStyled>
+  return <div style={{display: "flex"}}>
+      <ExplorerPanelStyled width={panelWidth}>
+        <FileTree files={files} path={location}/>
+      </ExplorerPanelStyled>
+      <ResizeArea setPanelWidth={setPanelWidth}/>
+    </div>
 }
 
 export default ExplorerPanel;

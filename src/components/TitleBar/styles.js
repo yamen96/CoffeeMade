@@ -17,6 +17,11 @@ export const DraggableArea = styled.div`
   width: 100%;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+  padding: 10px 15px 9px 15px;
+  color: ${props => props.theme.fontColor};
+  font-size: 12pt;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const CloseButton = styled.button`

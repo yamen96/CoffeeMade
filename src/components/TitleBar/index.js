@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { TitleBarStyled, CloseButton, MinimizeButton, MaximizeButton, DraggableArea } from './styles';
+import {  useSelector } from 'react-redux';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import coffee from './coffee.svg'
 const ipcRenderer = window.require("electron").ipcRenderer;
 
 const TitleBar = ({toggleTheme}) => {
   const [maximized, setMaximized ] = useState(true);
+  const location = useSelector((state) => state.fileDirectory?.location)?.split('\\')?.pop() || "Undefined Location";
+  const title = useSelector((state) => state.contents?.name);
 
   const minimizeClickHandler = (e) => {
     ipcRenderer.send('minimize');
@@ -24,7 +28,11 @@ const TitleBar = ({toggleTheme}) => {
   });
 
   return <TitleBarStyled>
-      <DraggableArea />
+      <DraggableArea>
+        <div style={{display: "flex", alignItems: "center", gap: "10px"}}><img src={coffee} /> {location}</div>
+        <div style={{paddingLeft: "10rem", overflow: "hidden"}}>{title}</div>
+        <div></div>
+      </DraggableArea>
       <ThemeToggle onClick={toggleTheme}/>
       <MinimizeButton onClick={minimizeClickHandler}/>
       <MaximizeButton maximized={maximized} onClick={maximizeClickHandler}/>

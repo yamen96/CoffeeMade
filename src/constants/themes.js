@@ -9,8 +9,8 @@ export const themes = {
       scrollbarThumbColorOnHover: "rgb(58, 65, 77)",
       leftToolbarColor: "#3B4049",
       explorerPanelFontColor: "#adadad",
-      primaryButtonColor: "#787F8D",
-      primaryButtonColorOnHover: "#969EAE",
+      primaryButtonColor: "#97b3e8",
+      primaryButtonColorOnHover: "#abc8ff",
       primaryButtonTextColor: "#242830",
     },
     light: {
@@ -22,8 +22,8 @@ export const themes = {
       scrollbarThumbColorOnHover: "rgb(186, 186, 186)",
       leftToolbarColor: "#3B4049",
       explorerPanelFontColor: "#303640",
-      primaryButtonColor: "#787F8D",
-      primaryButtonColorOnHover: "#969EAE",
+      primaryButtonColor: "#7aa6fa",
+      primaryButtonColorOnHover: "#8cb2fa",
       primaryButtonTextColor: "#ffffff",
     }
   }

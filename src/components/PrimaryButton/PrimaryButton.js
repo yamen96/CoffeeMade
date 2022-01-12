@@ -4,8 +4,8 @@ export const PrimaryButton = styled.button`
   background-color: ${({theme}) => theme.primaryButtonColor };
   padding: 10px;
   border: none;
-  margin-bottom: 5px;
-  // border-radius: 5px;
+  margin-top: 25px;
+  border-radius: 5px;
   color: ${({theme}) => theme.primaryButtonTextColor };
   cursor: pointer;
   font-size: 13pt;

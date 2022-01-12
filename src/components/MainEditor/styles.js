@@ -8,10 +8,10 @@ export const MainEditorStyled = styled.div`
   height: calc(100vh - 40px);
   font-family: 'Helvetica Neue', sans-serif;
   padding: 40px 60px;
-  overflow-y: auto;
   flex: 1;
   box-sizing: border-box;
   transition: background .5s;
+  overflow-y: auto;
   ::-webkit-scrollbar {
     width: 20px;
   }
@@ -22,5 +22,5 @@ export const MainEditorStyled = styled.div`
   }
   ::-webkit-scrollbar-thumb:hover {
     background: ${props => props.theme.scrollbarThumbColorOnHover};
-}
+  }
 `

@@ -10,7 +10,7 @@ const LeftToolbar = () => {
   const [selectedIcon, setSelectedIcon] = useState(toolBarIcons[0]);
   return <LeftToolbarStyled>
       {toolBarIcons.map((icon, index) => (
-        <div key={icon.name}>
+        <div key={icon.name}  >
         <a data-tip data-for={`icon-tooltip-${index}`}>
         <ToolbarIcon 
           onClick={(e)=>{
@@ -19,6 +19,7 @@ const LeftToolbar = () => {
           isSelected={selectedIcon.name===toolBarIcons[index].name} 
           srcSelected={icon.icon.selected} 
           srcUnselected={icon.icon.unselected}
+           
           />
         </a>
         <ReactTooltip id={`icon-tooltip-${index}`} type={theme.name.includes("dark") ? "light" : "dark"} effect='solid' place="right">
