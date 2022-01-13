@@ -1,5 +1,4 @@
-import React, { useContext,  } from 'react';
-import { ThemeContext } from '../../App.js';
+import React from 'react';
 import { ToolbarIconWrapper, ToolbarIconStyled } from './styles';
 
 const ToolbarIcon = ({isSelected, srcSelected, srcUnselected, onClick }) => {

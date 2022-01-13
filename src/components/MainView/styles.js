@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const MainEditorStyled = styled.div`
+export const MainViewStyled = styled.div`
   border: none;
   outline:none;
   color: ${props => props.theme.fontColor};
   font-size: 22px;
   height: calc(100vh - 40px);
   font-family: 'Helvetica Neue', sans-serif;
-  padding: 40px 60px;
+  padding: 40px 90px;
   flex: 1;
   box-sizing: border-box;
   transition: background .5s;

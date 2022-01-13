@@ -5,14 +5,15 @@ export const ExplorerPanelStyled = styled.div`
   background-color: ${props => props.theme.titleBarColor};
   height: calc(100vh - 40px);
   z-index: 5;
-  // margin: 0 auto; 
   width: ${props => props.width}px;
   max-width: 200%;
   top: 40px;
+  transition: width 0.1s ease-in-out;
 
   overflow-y: auto;
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
   
   &::-webkit-scrollbar-thumb {
@@ -37,7 +38,7 @@ export const StyledFileName = styled.div`
   }
   border-radius: 3px;
   margin: 2px;
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
   &.isOpen {
     background-color: ${props => props.theme.name.includes("dark") ? 'rgb(255, 255, 255, 0.1)' : 'rgb(0, 0, 0, 0.1)'};
     min-height: 40px;

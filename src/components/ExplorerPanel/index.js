@@ -7,16 +7,25 @@ import ResizeArea from './ResizeArea.js';
 
 const ipcRenderer = window.require("electron").ipcRenderer;
 
-const ExplorerPanel = () => {
+const ExplorerPanel = ({isVisible}) => {
   const dispatch = useDispatch();
   let location = useSelector((state) => state.fileDirectory.location);
   const files = useSelector((state) => state.fileDirectory.files);
   const [panelWidth, setPanelWidth] = useState(200);
+  const [lastPanelWidth, setLastPanelWidth] = useState(200);
 
   useEffect(async () => {
     if (location)
       openNewDirectory(location, dispatch);
   }, [])
+
+  
+  useEffect(async () => {
+    setPanelWidth(isVisible ? lastPanelWidth : '0')
+    if (!isVisible) {
+      setLastPanelWidth(panelWidth);
+    }
+  }, [isVisible])
 
   ipcRenderer.on('selected-folder', function (evt, msgData) {
     const { filePaths } = msgData;

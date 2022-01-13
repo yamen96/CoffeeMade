@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import styled from "styled-components"
-import React from 'react';
 import TitleBar from './components/TitleBar';
 import LeftToolbar from './components/LeftToolbar';
-import MainEditor from './components/MainEditor';
+import MainView from './components/MainView';
 import ExplorerPanel from "./components/ExplorerPanel";
 import { ThemeProvider } from 'styled-components'
 import { themes } from './constants/themes';
@@ -17,6 +17,11 @@ const MainApp = styled.div`
 function App() {
   const defaultStartupTheme = themes.default.dark;
   const [theme, toggleTheme] = useTheme(defaultStartupTheme);
+  const [explorerIsVisisble, setExplorerIsVisisble] = useState(true);
+
+  const toggleExplorerVisibility = () => {
+    setExplorerIsVisisble(!explorerIsVisisble)
+  }
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -24,9 +29,9 @@ function App() {
         <MainApp>
           <TitleBar toggleTheme={toggleTheme}/>
           <div style={{display: "flex"}}>
-            <LeftToolbar />
-            <ExplorerPanel />
-            <MainEditor />  
+            <LeftToolbar toggleVisibility={toggleExplorerVisibility}/>
+            <ExplorerPanel isVisible={explorerIsVisisble} />
+            <MainView />  
           </div>
         </MainApp>
       </ThemeProvider>

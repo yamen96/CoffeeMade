@@ -9,28 +9,28 @@ import calendarWhite from './calendar-White.svg';
 
 export const toolBarIcons = 
 [
-  {name: "Files",
-   icon: {
+  { name: "Files",
+    icon: {
       selected: folderWhite,
       unselected: folderGrey
-   } 
-},
-//   {name: "Tags",
-//    icon: {
-//     selected: tagsWhite,
-//     unselected: tagsGrey
-//   } 
-// },
-//   {name: "Todos",
-//   icon: {
-//     selected: todoWhite,
-//     unselected: todoGrey
-//   } 
-// },
-//   {name: "Calendar",
-//   icon: {
-//     selected: calendarWhite,
-//     unselected: calendarGrey
-//   } 
-//   },
+    } 
+  },
+  // { name: "Tags",
+  //   icon: {
+  //     selected: tagsWhite,
+  //     unselected: tagsGrey
+  //   } 
+  // },
+  // { name: "Todos",
+  //   icon: {
+  //     selected: todoWhite,
+  //     unselected: todoGrey
+  //   } 
+  // },
+  // { name: "Calendar",
+  //   icon: {
+  //     selected: calendarWhite,
+  //     unselected: calendarGrey
+  //   } 
+  // },
 ]
