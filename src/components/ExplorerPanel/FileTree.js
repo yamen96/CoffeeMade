@@ -31,9 +31,9 @@ const FileTree = ({files, path}) => {
     }
   }
 
-  return <div>
+  return <div style={{whiteSpace: "nowrap", overflow: "hidden"}}>
      {files && files.length > 0 ? files.map(file => (
-        <div key={`${path}\\${file.name}`}  >
+        <div key={`${path}\\${file.name}`}  style={{width: '100%'}}>
           <StyledFileName  onClick={(e) => handleClick(file)} className={file.isOpen && file.isFile ? 'isOpen' : ''}>
             {file.isFolder && <div style={{paddingRight: "10px"}}><img src={file.isOpen ? openFolderIcon : closedFolderIcon}/></div>}
             {file.isFile && file.extension !== 'md' && <div style={{paddingRight: "10px"}}><img src={imgIcon}/></div>}

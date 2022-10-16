@@ -36,7 +36,6 @@ const MainEditor = () => {
   }, [contentIsLoading])
 
   return <div>
-    <button onClick={onBoldClick}>Bold</button>
 		<Editor editorState={editorState} onChange={onChange} handleKeyCommand={handleKeyCommand} />
   </div>
 }

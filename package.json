@@ -17,6 +17,7 @@
     "react-flexbox-grid": "^2.1.2",
     "react-markdown": "^7.1.2",
     "react-redux": "^7.2.6",
+    "react-resize-panel": "^0.3.5",
     "react-scripts": "4.0.3",
     "react-tooltip": "^4.2.21",
     "remark-gfm": "^3.0.1",

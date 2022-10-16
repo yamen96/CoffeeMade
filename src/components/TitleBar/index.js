@@ -32,11 +32,13 @@ const TitleBar = ({toggleTheme}) => {
 
   return <TitleBarStyled>
       <DraggableArea>
-        <div style={{display: "flex", alignItems: "center", gap: "10px"}}><img src={coffee} /> {location}</div>
-        <div style={{paddingLeft: "10rem", overflow: "hidden", display: "flex",  alignItems: "center", gap: "10px"}}>
+        <div style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", display: "flex", alignItems: "center", gap: "10px"}}><img src={coffee} />{location}</div>
+        <div style={{paddingLeft: "10rem", display: "flex",  alignItems: "center", gap: "10px"}}>
           {type === 'md' && <img src={notesIcon} />}
           {type === 'img' && <img src={imgIcon} />}
-          {title}
+          <p style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", maxWidth: '300px'}}>
+            {title}
+          </p>
         </div>
         <div></div>
       </DraggableArea>
