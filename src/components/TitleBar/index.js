@@ -3,12 +3,15 @@ import { TitleBarStyled, CloseButton, MinimizeButton, MaximizeButton, DraggableA
 import {  useSelector } from 'react-redux';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import coffee from './coffee.svg'
+import notesIcon from '../ExplorerPanel/notes.svg';
+import imgIcon from '../ExplorerPanel/img.svg'
 const ipcRenderer = window.require("electron").ipcRenderer;
 
 const TitleBar = ({toggleTheme}) => {
   const [maximized, setMaximized ] = useState(true);
   const location = useSelector((state) => state.fileDirectory?.location)?.split('\\')?.pop() || "Undefined Location";
-  const title = useSelector((state) => state.contents?.name);
+  const title = useSelector((state) => state.contents?.name)?.split('.')[0];
+  const type = useSelector((state) => state.contents?.type);
 
   const minimizeClickHandler = (e) => {
     ipcRenderer.send('minimize');
@@ -29,8 +32,14 @@ const TitleBar = ({toggleTheme}) => {
 
   return <TitleBarStyled>
       <DraggableArea>
-        <div style={{display: "flex", alignItems: "center", gap: "10px"}}><img src={coffee} /> {location}</div>
-        <div style={{paddingLeft: "10rem", overflow: "hidden"}}>{title}</div>
+        <div style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", display: "flex", alignItems: "center", gap: "10px"}}><img src={coffee} />{location}</div>
+        <div style={{paddingLeft: "10rem", display: "flex",  alignItems: "center", gap: "10px"}}>
+          {type === 'md' && <img src={notesIcon} />}
+          {type === 'img' && <img src={imgIcon} />}
+          <p style={{textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", maxWidth: '300px'}}>
+            {title}
+          </p>
+        </div>
         <div></div>
       </DraggableArea>
       <ThemeToggle onClick={toggleTheme}/>

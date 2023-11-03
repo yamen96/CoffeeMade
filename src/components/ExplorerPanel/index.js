@@ -1,17 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { ExplorerPanelStyled } from './styles.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { openNewDirectory } from '../../helpers/directoryHelper.js';
 import FileTree from './FileTree.js';
-import ResizeArea from './ResizeArea.js';
+import ResizePanel from 'react-resize-panel';
+import styled from 'styled-components';
+
+const StyledWrapper = styled.div`
+  .ResizePanel-module_ResizeBarHorizontal__3TBZ5 {
+    width: 5px;
+    margin-left: -5px;
+    :hover {
+      background-color: ${props => props.theme.primaryButtonColor};
+    }  
+  }
+`
 
 const ipcRenderer = window.require("electron").ipcRenderer;
 
-const ExplorerPanel = () => {
+const ExplorerPanel = ({isVisible}) => {
   const dispatch = useDispatch();
   let location = useSelector((state) => state.fileDirectory.location);
   const files = useSelector((state) => state.fileDirectory.files);
-  const [panelWidth, setPanelWidth] = useState(200);
 
   useEffect(async () => {
     if (location)
@@ -26,12 +36,18 @@ const ExplorerPanel = () => {
     window.localStorage.setItem('lastOpenedLocation', location);
   })
 
-  return <div style={{display: "flex"}}>
-      <ExplorerPanelStyled width={panelWidth}>
-        <FileTree files={files} path={location}/>
-      </ExplorerPanelStyled>
-      <ResizeArea setPanelWidth={setPanelWidth}/>
-    </div>
+  if (isVisible) {
+    return <StyledWrapper>
+      <ResizePanel direction="e" borderClass="" handleClass="test">
+        <ExplorerPanelStyled >
+            <FileTree files={files} path={location}/>
+        </ExplorerPanelStyled>
+      </ResizePanel>
+    </StyledWrapper>  
+  } else {
+    return <React.Fragment />
+  }
+
 }
 
 export default ExplorerPanel;

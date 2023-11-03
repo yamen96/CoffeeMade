@@ -5,7 +5,7 @@ import ToolbarIcon from './ToolbarIcon';
 import { ThemeContext } from '../../App.js';
 import ReactTooltip from 'react-tooltip';
 
-const LeftToolbar = () => {
+const LeftToolbar = ({toggleVisibility}) => {
   const theme = useContext(ThemeContext);
   const [selectedIcon, setSelectedIcon] = useState(toolBarIcons[0]);
   return <LeftToolbarStyled>
@@ -14,12 +14,15 @@ const LeftToolbar = () => {
         <a data-tip data-for={`icon-tooltip-${index}`}>
         <ToolbarIcon 
           onClick={(e)=>{
-            setSelectedIcon(toolBarIcons[index])}}
+            if (selectedIcon.name === toolBarIcons[index].name){
+              toggleVisibility();
+            } else {
+              setSelectedIcon(toolBarIcons[index])}}
+            }
           key={icon.name}
           isSelected={selectedIcon.name===toolBarIcons[index].name} 
           srcSelected={icon.icon.selected} 
           srcUnselected={icon.icon.unselected}
-           
           />
         </a>
         <ReactTooltip id={`icon-tooltip-${index}`} type={theme.name.includes("dark") ? "light" : "dark"} effect='solid' place="right">

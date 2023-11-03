@@ -1,7 +1,5 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { loadNewLocation, loadFolderContents, closeFolder, openFile } from '../state/fileDirectorySlice';
-import { loadImage } from '../state/contentsSlice';
+import { loadFile, setContentIsLoading } from '../state/contentsSlice';
 import { viewableExtensions } from '../constants/viewableExtensions';
 const fs = window.require('fs');
 
@@ -40,6 +38,17 @@ export const closeFolderInDirectory = (location, dispatch) => {
 
 export const openImage = (location, prevLocation, dispatch) => {
   const imgData = fs.readFileSync(location).toString('base64');
-  dispatch(loadImage({location, content: imgData}));
+  dispatch(loadFile({location, content: imgData, type: 'img'}));
   dispatch(openFile({location, prevLocation}))
+}
+
+export const openNotes = (location, prevLocation, dispatch) => {
+  dispatch(setContentIsLoading());
+  fs.readFile(location, 'utf8', (err, notesData) => {
+    if (err) {
+      return;
+    }
+    dispatch(loadFile({location, content: notesData, type: 'md'}));
+    dispatch(openFile({location, prevLocation}));
+  });
 }

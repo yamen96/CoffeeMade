@@ -5,21 +5,26 @@ const initialState = {
   content: '',
   location: '',
   name: '',
+  isLoading: false,
 }
 
 export const contentsSlice = createSlice({
   name: 'contents',
   initialState,
   reducers: {
-    loadImage: (state, action) => {
-      state.type = 'img';
+    loadFile: (state, action) => {
+      state.type = action.payload.type;
       state.content = action.payload.content;
       state.location = action.payload.location;
       state.name = action.payload.location?.split('\\')?.pop();
+      state.isLoading = false;
+    },
+    setContentIsLoading: (state) => {
+      state.isLoading = true;
     }
   }
 })
 
-export const { loadImage } = contentsSlice.actions;
+export const { loadFile, setContentIsLoading } = contentsSlice.actions;
 
 export default contentsSlice.reducer;

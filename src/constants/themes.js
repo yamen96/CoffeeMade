@@ -12,6 +12,7 @@ export const themes = {
       primaryButtonColor: "#97b3e8",
       primaryButtonColorOnHover: "#abc8ff",
       primaryButtonTextColor: "#242830",
+      divider: "rgba(255, 255, 255, 0.15)"
     },
     light: {
       name: "default.light",
@@ -25,6 +26,7 @@ export const themes = {
       primaryButtonColor: "#7aa6fa",
       primaryButtonColorOnHover: "#8cb2fa",
       primaryButtonTextColor: "#ffffff",
+      divider: "rgba(23, 23, 23, 0.2)"
     }
   }
 }
